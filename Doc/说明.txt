@@ -1,0 +1,10 @@
+MicroData数据库密码：
+scsl
+
+抗生素项目的联机标识
+ResultMic.AntiID的值
+
+另有一个特殊项目(名称可随意)：细菌鉴定结果
+联机标识：GermCName
+
+
