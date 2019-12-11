@@ -84,7 +84,7 @@ var
   MrConnStr:string;
   ifConnSucc:boolean;
   ValueMaxNum:integer;
-  EquipUnid:string;//设备唯一编号
+  EquipUnid:integer;//设备唯一编号
 
 //  RFM:STRING;       //返回数据
   hnd:integer;
@@ -227,7 +227,7 @@ begin
   CombinID:=ini.ReadString(IniSection,'组合项目代码','');
 
   LisFormCaption:=ini.ReadString(IniSection,'检验系统窗体标题','');
-  EquipUnid:=ini.ReadString(IniSection,'设备唯一编号','');
+  EquipUnid:=ini.ReadInteger(IniSection,'设备唯一编号',-1);
 
   QuaContSpecNoG:=ini.ReadString(IniSection,'高值质控联机号','9999');
   QuaContSpecNo:=ini.ReadString(IniSection,'常值质控联机号','9998');
@@ -403,9 +403,15 @@ begin
       FInts :=CreateOleObject('Data2LisSvr.Data2Lis');
       FInts.fData2Lis(ReceiveItemInfo,rightstr('0000'+SamNo,4),FormatDateTime('YYYY-MM-DD',DateTimePicker1.Date),
         (GroupName),(SpecType),(SpecStatus),(EquipChar),
-        (CombinID),'{!@#}{!@#}{!@#}{!@#}{!@#}{!@#}{!@#}{!@#}{!@#}{!@#}{!@#}{!@#}{!@#}'+EquipUnid,(LisFormCaption),(ConnectString),
+        (CombinID),'',(LisFormCaption),(ConnectString),
         (QuaContSpecNoG),(QuaContSpecNo),(QuaContSpecNoD),'',
-        false,true,'常规');
+        false,true,'常规',
+        '',
+        EquipUnid,
+        '','','','',
+        -1,-1,-1,-1,
+        -1,-1,-1,-1,
+        false,false,false,false);
       if not VarIsEmpty(FInts) then FInts:= unAssigned;
     end;
 
